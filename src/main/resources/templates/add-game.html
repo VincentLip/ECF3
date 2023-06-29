@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/header.html :: head}"></head>
+<body>
+<header th:replace="~{fragments/header.html::header}"></header>
+<main class="d-flex flex-column justify-content-center align-items-center">
+    <h2>Formulaire Match</h2>
+    <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="text-danger"></div>
+    <form th:action="@{#}" method="post" class="d-flex flex-column align-items-center mt-5" style="width: 50%;">
+        <div class="form-group">
+            <label for="dateGame">Date</label>
+            <input type="date" class="form-control" id="dateGame" name="dateGame"
+                   th:attr="value=${#dates.format(dateGame, 'yyyy-MM-dd')}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="userEmail1">Email joueur 1</label>
+            <input type="text" class="form-control" id="userEmail1" name="userEmail1">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="userEmail2">Email joueur 2</label>
+            <input type="text" class="form-control" id="userEmail2"name="userEmail2" >
+        </div>
+        <button class="btn btn-info mt-4" style="width: 60%">Send</button>
+    </form>
+</main>
+
+
+</body>
+</html>

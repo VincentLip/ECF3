@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <th:block th:insert="~{fragments/header.html :: head}"/>
+</head>
+<body>
+<div th:replace="~{fragments/header.html :: header}"></div>
+
+
+<div class="container">
+
+  <h1> Liste des matchs </h1>
+  <table class="table table-bordered table-striped table-dark text-center">
+    <thead>
+    <tr>
+      <th> Date</th>
+      <th> Joueur 1</th>
+      <th> Joueur 2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:fragment="game" th:each="game : ${game}">
+      <th scope="row" th:text="${#dates.format(game?.gameDate, 'yyyy-MM-dd')}"></th>
+      <td th:text="${game.getUser1()}"></td>
+      <td th:text="${game.getUser2()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
