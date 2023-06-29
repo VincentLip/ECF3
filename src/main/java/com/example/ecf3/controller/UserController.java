@@ -25,13 +25,13 @@ public class UserController {
     private HttpSession _httpSession;
 
 
-    @GetMapping("signin")
+    @GetMapping("/signin")
     public ModelAndView signIn() {
         ModelAndView modelAndView = new ModelAndView("signin");
         return modelAndView;
     }
 
-    @PostMapping("signin")
+    @PostMapping("/signin")
     public String signUp(@RequestParam String email, @RequestParam String password) throws UserNotExistException, IOException {
         if(_userService.signIn(email, password)) {
             return "redirect:/user/profil";
@@ -46,13 +46,13 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("signup")
+    @GetMapping("/signup")
     public ModelAndView postSignIn() {
         ModelAndView modelAndView = new ModelAndView("signup");
         return modelAndView;
     }
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public String postSignUp(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) throws UserExistException, IOException, UserExistException {
         if(_userService.signUp(firstName, lastName, email, password)) {
             return "redirect:/user/signin";
@@ -67,7 +67,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("")
+    @GetMapping("/profil")
     public ModelAndView profil() {
         int userId = (int) _httpSession.getAttribute("userId");
         ModelAndView modelAndView = new ModelAndView();
@@ -87,13 +87,13 @@ public class UserController {
     @PostMapping("/edit/{id}")
     public String submitFormEditUser(@PathVariable int id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) throws NotSignInException, UserNotExistException, EmptyFieldsException, NotAdminException {
         if(_userService.updateUser(id, firstName,lastName,email,password)){
-            return "redirect:/";
+            return "redirect:/user/profil";
         }
         return null;
     }
 
 
-    @GetMapping("logout")
+    @GetMapping("/logout")
     public ModelAndView getLogout() {
         _userService.logout();
         ModelAndView modelAndView = new ModelAndView("home");

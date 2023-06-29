@@ -9,6 +9,7 @@
 <div th:replace="~{fragments/header.html :: header}"></div>
 
 <div class="container">
+    <h1>Fiche du joueur</h1>
     <table class="table table-bordered table-striped table-dark text-center">
         <thead>
         <tr>
@@ -27,6 +28,7 @@
         </tbody>
     </table>
     <a th:href="@{/user/edit/{id}(id = ${user.getId()})}" class="btn btn-outline-info">Edit</a>
+    <a th:href="@{/game}" class="btn btn-outline-info">Voir Match</a>
 </div>
 </body>
 </html>
