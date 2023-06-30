@@ -61,6 +61,12 @@ public class GameService {
         throw new NotSignInException();
     }
 
+    public Game getGameById(int id) throws NotSignInException {
+        if(_loginService.isLogged()) {
+            return _gameRepository.getGameById(id);
+        }
+        throw new NotSignInException();
+    }
 
 
 }
