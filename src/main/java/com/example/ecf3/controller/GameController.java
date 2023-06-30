@@ -1,9 +1,11 @@
 package com.example.ecf3.controller;
 
 import com.example.ecf3.entity.Game;
+import com.example.ecf3.entity.GameResult;
 import com.example.ecf3.entity.User;
 import com.example.ecf3.exception.NotAdminException;
 import com.example.ecf3.exception.NotSignInException;
+import com.example.ecf3.service.GameResultService;
 import com.example.ecf3.service.GameService;
 import com.example.ecf3.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,21 +29,18 @@ public class GameController {
 
     @Autowired
     private UserService _userService;
-    @Autowired
-    private HttpServletResponse _response;
-
-    @Autowired
-    private HttpSession _httpSession;
 
     @Autowired
     private GameService _gameService;
+
+    @Autowired
+    private GameResultService _gameResultService;
 
     @GetMapping("")
     public ModelAndView get() throws NotSignInException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("game");
         modelAndView.addObject("game", _gameService.getGame());
-
         return modelAndView;
     }
 
@@ -56,7 +55,21 @@ public class GameController {
         User user1 = _userService.findByEmail(userEmail1);
         User user2 = _userService.findByEmail(userEmail2);
         if(_gameService.createGame(dateGame,user1,user2)){
-            return "redirect:/add";
+            return "redirect:/game";
+        }
+        return null;
+    }
+
+    @GetMapping("/score")
+    public String formAddScore(Model model) {
+        model.addAttribute("gameResult",new GameResult());
+        return "add-gameResult";
+    }
+
+    @PostMapping("/score")
+    public String submitAddScore(@RequestParam int score,@RequestParam int id) throws NotSignInException, IOException, NotAdminException {
+        if(_gameResultService.createGameResult(score,id)){
+            return "redirect:/game";
         }
         return null;
     }

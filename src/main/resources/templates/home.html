@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:insert="~{fragments/header.html :: head}"/>
 </head>
 <body>
+<div th:replace="~{fragments/header.html :: header}"></div>
 
+
+<div class="container">
+
+    <h1> Tournoi d'echec </h1>
+    <a th:if="${@userService.isAdmin()}" th:href="@{/game/add}" class="btn btn-outline-dark">Ajouter Match</a>
+</div>
 </body>
 </html>

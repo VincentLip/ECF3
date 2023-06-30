@@ -35,29 +35,6 @@ public class User {
     @OneToMany(mappedBy = "user1",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Game> games;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getCurrentRanking() {
-        return currentRanking;
-    }
-
-    public void setCurrentRanking(int currentRanking) {
-        this.currentRanking = currentRanking;
-    }
 
     @Override
     public String toString() {

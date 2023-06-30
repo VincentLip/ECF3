@@ -29,13 +29,7 @@ public class Game {
     @OneToOne
     private GameResult gameResult;
 
-    public User getUser1() {
-        return user1;
-    }
 
-    public void setUser1(User user1) {
-        this.user1 = user1;
-    }
 
 
 }

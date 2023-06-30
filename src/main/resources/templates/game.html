@@ -15,19 +15,26 @@
   <table class="table table-bordered table-striped table-dark text-center">
     <thead>
     <tr>
+      <th> Identifiant </th>
       <th> Date</th>
       <th> Joueur 1</th>
       <th> Joueur 2</th>
+      <th> Gagnant</th>
     </tr>
     </thead>
     <tbody>
     <tr th:fragment="game" th:each="game : ${game}">
+      <th th:text="${game.getId()}"></th>
       <th scope="row" th:text="${#dates.format(game?.gameDate, 'yyyy-MM-dd')}"></th>
       <td th:text="${game.getUser1()}"></td>
       <td th:text="${game.getUser2()}"></td>
+      <td>
+      </td>
     </tr>
     </tbody>
   </table>
+  <a th:if="${@userService.isLogged()}" th:href="@{/game/score}" class="btn btn-outline-dark">Ajouter Score</a>
+  <a th:if="${@userService.isAdmin()}" th:href="@{/game/add}" class="btn btn-outline-dark">Ajouter Match</a>
 </div>
 </body>
 </html>

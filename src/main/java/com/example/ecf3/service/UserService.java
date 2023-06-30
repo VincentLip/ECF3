@@ -84,17 +84,19 @@ public class UserService {
 
     public boolean isLogged() {
         try {
-            String attrIsLogged = _httpSession.getAttribute("isLogged").toString();
-            return attrIsLogged.equals("OK");
+            boolean attrIsLogged = (boolean) _httpSession.getAttribute("isLogged");
+            return attrIsLogged;
         }catch (Exception ex) {
             return false;
         }
     }
 
     public boolean logout(){
-        _httpSession.setAttribute("isLogged", "NO");
+        _httpSession.setAttribute("isLogged", false);
         return true;
     }
+
+
 
 
 }
