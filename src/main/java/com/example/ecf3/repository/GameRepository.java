@@ -12,4 +12,5 @@ public interface GameRepository extends CrudRepository<Game,Integer> {
     public Game findGameById(int id);
 
     public Game getGameById(int id);
+
 }

@@ -97,6 +97,13 @@ public class UserService {
     }
 
 
-
+    public boolean isAdmin() {
+        try {
+            boolean attrIsAdmin = (boolean) _httpSession.getAttribute("isAdmin");
+            return attrIsAdmin;
+        }catch (Exception ex) {
+            return false;
+        }
+    }
 
 }
